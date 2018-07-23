@@ -4,8 +4,8 @@ header_title: "RUniteCS"
 email:       rutgersusacs@gmail.com
 author:      Alexander Goodkind
 description: "A volunteer outreach program to spark interest in computer science in middle school students"
-baseurl:     "/"
-url:         "https://agoodkind.github.io/runitecs"
+baseurl:     "/RUniteCS"
+url:         "https://agoodkind.github.io"
 date_format: "%-d.%m.%Y"
 
 # Google services
