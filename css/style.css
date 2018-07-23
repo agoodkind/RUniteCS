@@ -36,3 +36,24 @@ small, .font_small {font-size: 0.833em;}
 a.nocolor {
   color: inherit;
 }
+
+.top-buffer {
+  padding-top: 30px;
+}
+
+.top-buffer:first-child {
+  padding-top: 10px;
+}
+
+.top-buffer:last-child{
+  padding-bottom: 20px;
+}
+
+.has-links {
+  display: inline-block;
+
+}
+
+.inline-link {
+  color: #b22828;
+}
