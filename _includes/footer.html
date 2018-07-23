@@ -1,9 +1,14 @@
-<footer class="footer text-muted py-4">
+<footer class="footer text-muted">
   <div class="container">
     <div class="row mt-1">
-      <div class="col text-center">
-        Copyright 2017-2018.
-      </div>
+      <div class="col text-center ">
+        {% if site.email %}
+          <a class="text-muted" href="mailto:{{ site.email }}"><span class="mr-1 fa fa-envelope-open"></span>{{ site.email }}</a>
+        {% endif %}
+        |
+        {% if site.twitter_username %}
+          <a class="text-muted" href="https://twitter.com/{{ site.twitter_username }}"><span class="mr-1 fa fa-twitter"></span>@{{ site.twitter_username }} #RUniteCS</a>
+        {% endif %}
     </div>
   </div>
 </footer>
