@@ -1,2 +1,2 @@
 # RUniteCS
-a volunteer outreach program to spark interest in computer science for students in kindegarten through high school
+a volunteer outreach program to spark interest in computer science for students in kindergarten through high school
