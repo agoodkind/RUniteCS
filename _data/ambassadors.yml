@@ -13,6 +13,12 @@
 - name: Srihari Shankar
   image: Srihari_Shankar.jpg
 
+- name: Alexander Goodkind
+  image: Alexander_Goodkind.jpg
+
+- name: Diane Tran
+  image: Diane_Tran.jpeg
+
 - name: Shreya Sethi
   image: Shreya_Sethi.jpeg
 
@@ -25,13 +31,8 @@
 - name: Maya Ravichandran
   image: Maya_Ravichandran.jpg
 
-- name: Alexander Goodkind
-  image: Alexander_Goodkind.jpg
-
-- name: Diane Tran
-  image: Diane_Tran.jpeg
-
 - name: Ali Mohamad
   image: Ali_Mohamad.jpeg
 
-
+- name: Fan Liu
+  image: Fan_Liu.png
