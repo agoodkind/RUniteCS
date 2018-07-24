@@ -1,0 +1,32 @@
+--- 
+layout: default 
+---
+
+
+<div class="row">
+
+    
+
+{% for person in site.data.ambassadors %}
+
+    <div class="col-lg-4 col-md-6 col-xs-6 mb-5">
+        <div class="card">
+            <img class="img-fluid" src="{{ 'docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" alt="{{ person.name }}" style="width:100%">
+            <div class="container">
+                <h2>{{ person.name }}</h2>
+                {% if person.title %}
+                <p class="title">{{ person.title }}</p>
+                {% endif %}
+                <p>{{ person.blurb }}</p>
+                <p>{{ person.email }}</p>
+                <p>
+                    <button class="button">Contact</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+{% endfor %}
+
+</div>
