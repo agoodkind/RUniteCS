@@ -12,26 +12,26 @@ layout: default
 
         let temp = {}
 
-        // {% for person in amabassadors %}
+        {% for person in amabassadors %}
 
-        //     temp = {
-        //         name: '{{ person.name }}',
-        //         {% if person.blurb %}
-        //             blurb: '{{ person.blurb }}',
-        //         {% endif %}  
-        //         {% if person.title %}
-        //             title: '{{ person.title }}',
-        //         {% endif %} 
-        //         {% if person.email %} 
-        //             email: '{{ person.email }}', 
-        //         {% endif %} 
-        //         image: "{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}"
-        //     };
+            temp = {
+                name: '{{ person.name }}',
+                {% if person.blurb %}
+                    blurb: '{{ person.blurb }}',
+                {% endif %}  
+                {% if person.title %}
+                    title: '{{ person.title }}',
+                {% endif %} 
+                {% if person.email %} 
+                    email: '{{ person.email }}', 
+                {% endif %} 
+                image: "{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}"
+            };
 
-        //     ambassador.push(temp)
+            ambassador.push(temp)
 
 
-        // {% endfor %} 
+        {% endfor %} 
         
         function shuffle(a) {
             for (let i = a.length - 1; i > 0; i--) {
@@ -55,7 +55,7 @@ layout: default
             $('.outer').append(inner.append(card.append(image).append(container.append(name))));
         }
     </script>
-{% for person in amabassadors %}
+<!-- {% for person in amabassadors %}
     <div class=" col-lg-4 col-md-6 col-xs-6 mb-5">
         <div class="card">
             <img class="img-fluid" src="{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" alt="{{ person.name }}" style="width:100%">
@@ -71,7 +71,7 @@ layout: default
             </div>
         </div>
     </div>
-{% endfor %}
+{% endfor %} -->
 
 
 </div>
