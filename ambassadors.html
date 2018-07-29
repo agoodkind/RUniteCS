@@ -3,13 +3,62 @@ layout: default
 ---
 
 
-<div class="row">
+<div class="row outer">
     
-{% assign shuffled_amabassadors = site.data.ambassadors | shuffle %}
-{% for person in shuffled_amabassadors %}
-    <div class="col-lg-4 col-md-6 col-xs-6 mb-5">
+{% assign amabassadors = site.data.ambassadors %}
+
+<script>
+    var ambassador = []
+
+    let temp = {}
+
+    {% for person in amabassadors %}
+
+        temp = {
+            name: '{{ person.name }}',
+            {% if person.blurb %}
+                blurb: '{{ person.blurb }}',
+            {% endif %}  
+            {% if person.title %}
+                title: '{{ person.title }}',
+            {% endif %} 
+            {% if person.email %} 
+                email: '{{ person.email }}', 
+            {% endif %} 
+            image: "{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}"
+        };
+
+        ambassador.push(temp)
+
+
+    {% endfor %} 
+    
+    function shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    shuffle(ambassador);
+
+    for (var person in ambassador) {
+        p = ambassador[person]
+        let inner = $('<div class="inner col-lg-4 col-md-6 col-xs-6 mb-5">');
+        let card = $('<div class="card">');
+        
+        let image = $('<img style="width:100%" class="img-fluid" src="' + p.image + '" alt="' + p.name + '"/>')
+        let container = $('<div class="container">')
+        let name = $('<h2>' + p.name + '</h2>');
+
+        $('.outer').append(inner.append(card.append(image).append(container.append(name))));
+    }
+</script>
+<!-- {% for person in amabassadors %}
+    <div class=" col-lg-4 col-md-6 col-xs-6 mb-5">
         <div class="card">
-            <img class="img-fluid" src="{{ 'docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" alt="{{ person.name }}" style="width:100%">
+            <img class="img-fluid" src="{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" alt="{{ person.name }}" style="width:100%">
             <div class="container">
                 <h2>{{ person.name }}</h2>
                 <p class="title">{{ person.title }}</p>
@@ -22,6 +71,7 @@ layout: default
             </div>
         </div>
     </div>
-{% endfor %}
+{% endfor %} -->
+
 
 </div>
