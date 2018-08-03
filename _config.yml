@@ -26,7 +26,7 @@ ajaxify_contact_form: true
 # (leave blank to disable Disqus)
 disqus_shortname: "disqus_xxx"
 
-google_maps_js_key: AIzaSyBOmb5dNXY57yaecsKMaa5f1Nx9AR-Rja0
+google_maps_js_key: AIzaSyCSh7602bHZRIAn8-OvmAPy4V76ThyRVno
 
 # Social icons
 github_username:
