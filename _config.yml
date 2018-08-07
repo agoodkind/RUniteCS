@@ -25,7 +25,9 @@ ajaxify_contact_form: true
 # Disqus post comments
 # (leave blank to disable Disqus)
 disqus_shortname: "disqus_xxx"
-
+# https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+# local dev - alex: AIzaSyBOmb5dNXY57yaecsKMaa5f1Nx9AR-Rja0
+# rutgers dev: AIzaSyCSh7602bHZRIAn8-OvmAPy4V76ThyRVno
 google_maps_js_key: AIzaSyCSh7602bHZRIAn8-OvmAPy4V76ThyRVno
 
 # Social icons
