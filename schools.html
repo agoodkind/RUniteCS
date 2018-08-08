@@ -20,53 +20,80 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
 <script>
 
     function initMap() {
-        
-        var myLatLng = {lat: 40.5008186, lng: -74.44739909999998}; // rutgers
 
         var map = new google.maps.Map(document.getElementById('map'))
 
-        map.setZoom(8.5);
-        map.setCenter(myLatLng);
-
-        new google.maps.Marker({ // rutgers
-            position: myLatLng,
-            map: map
-        });
-
         var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
         
-        schools = [
-            {% for school in schools %} 
-                {
-                    name: '{{ school.name }}',
-                    placeId: '{{ school.placeId }}'
-                },
-            {% endfor %}
-        ]
+        schools = { }
+        {% for school in schools %} 
+        schools['{{ school.placeId }}'] = '{{ school.name }}'
+        {% endfor %}
+        
 
         var promisedResults = []
 
         for (let i in schools) {
-            promisedResults.push(getResByPlaceId(schools[i].placeId, geocoder, map))
+            promisedResults.push(getResByPlaceId(i, geocoder, map));
         }
-
-        
 
         Promise.all(promisedResults).then(function(resolvedResults){
             var bounds = new google.maps.LatLngBounds();
-            var locs = []
+            var locations = []
+            var markers = {}
             resolvedResults.forEach(function(res) {
                 let latlng = {lat: res[0].geometry.location.lat(), lng: res[0].geometry.location.lng()}
-                new google.maps.Marker({ 
+
+                let name = schools[res[0].place_id] // may be a good use for Places
+
+                console.log(res[0])
+
+                let contentString = '<div id="content">'+
+                    '<div id="siteNotice">'+
+                    '</div>'+
+                    '<h1 id="firstHeading" class="firstHeading">'+ name +'</h1>'+
+                    '<div id="bodyContent">'+
+                    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+                    'sandstone rock formation in the southern part of the '+
+                    'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+                    'south west of the nearest large town, Alice Springs; 450&#160;km '+
+                    '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+                    'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+                    'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+                    'Aboriginal people of the area. It has many springs, waterholes, '+
+                    'rock caves and ancient paintings. Uluru is listed as a World '+
+                    'Heritage Site.</p>'+
+                    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+                    'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+                    '(last visited June 22, 2009).</p>'+
+                    '</div>'+
+                    '</div>';
+
+                let infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+                let marker = new google.maps.Marker({ 
                     map: map,
                     position: latlng
                 })
-                locs.push(latlng)
+
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+
+                markers[res[0].place_id] = marker;
+
+                locations.push(latlng);
             });
 
-            for (var m in locs) { 
-                bounds.extend(locs[m]);
+            $(".marker-trigger").on("click", function() {
+               let marker = markers[$(this).data("placeid")]
+               google.maps.event.trigger(marker, 'click');
+            })
+
+            for (var m in locations) { 
+                bounds.extend(locations[m]);
             }
 
             map.setCenter(bounds.getCenter());
@@ -96,7 +123,7 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
         })
     } 
 
-    function getResByPlaceId(placeId, geocoder) {
+    function getResByPlaceId(placeId, geocoder, callback) {
         return new Promise(function(resolve, reject) {
             geocoder.geocode({'placeId': placeId}, function(results, status) {
                 if (status === 'OK') {
@@ -110,14 +137,16 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
 </script>
 
 
+
+<div> 
+    <ul>
+        {% for school in schools %} 
+            <li><a class="marker-trigger" href="#" data-placeid="{{ school.placeId }}" data-name="{{ school.name }}">{{ school.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
 {% comment %} 
-<p> 
-    {% for school in schools %} 
-        <p>{{ school }}</p>
-    {% endfor %}
-</p>
-
-
 
  TODO:
     add ability to click links and zoom to their location + get info
