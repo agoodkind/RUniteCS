@@ -38,11 +38,11 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
         }
 
         Promise.all(promisedResults).then(function(resolvedResults){
-            var bounds = new google.maps.LatLngBounds();
+            var bounds = new google.maps.LatLngBounds(); // boundaries for all coords of each marker
             var locations = []
-            var markers = {}
+            var markers = {} 
             resolvedResults.forEach(function(res) {
-                let latlng = {lat: res[0].geometry.location.lat(), lng: res[0].geometry.location.lng()}
+                let latlng = {lat: res[0].geometry.location.lat(), lng: res[0].geometry.location.lng()} // get coords for each res
 
                 let name = schools[res[0].place_id] // may be a good use for Places
 
@@ -67,36 +67,36 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
                     'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
                     '(last visited June 22, 2009).</p>'+
                     '</div>'+
-                    '</div>';
+                    '</div>'; // to be changed
 
                 let infowindow = new google.maps.InfoWindow({
-                    content: contentString
+                    content: contentString // construct info window
                 });
 
-                let marker = new google.maps.Marker({ 
+                let marker = new google.maps.Marker({  // construct marker and attach map
                     map: map,
                     position: latlng
                 })
 
                 marker.addListener('click', function() {
-                    infowindow.open(map, marker);
+                    infowindow.open(map, marker); // add default click listener to each marker
                 });
 
-                markers[res[0].place_id] = marker;
+                markers[res[0].place_id] = marker; // construct dictionary of place_id => markers
 
-                locations.push(latlng);
+                locations.push(latlng); // construct the array of latlng coords
             });
 
             $(".marker-trigger").on("click", function() {
-               let marker = markers[$(this).data("placeid")]
-               google.maps.event.trigger(marker, 'click');
+               let marker = markers[$(this).data("placeid")] // retrieve the corresponding marker based on the buttons place id
+               google.maps.event.trigger(marker, 'click'); // trigger the info window to open
             })
 
             for (var m in locations) { 
-                bounds.extend(locations[m]);
+                bounds.extend(locations[m]); // construct boundaries
             }
 
-            map.setCenter(bounds.getCenter());
+            map.setCenter(bounds.getCenter()); // recenter view around all markers based on constructed boundaries
 
             {% comment %} google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
                 this.setZoom(map.getZoom()-1);
@@ -106,7 +106,7 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
                 }
             }); {% endcomment %}
 
-            map.fitBounds(bounds);
+            map.fitBounds(bounds); // resize to fit map to constructed boundaries
         })
         
     }
@@ -136,119 +136,20 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
     } 
 </script>
 
+{% comment %} 
 
+TODO: 
+- when clicking another link remove previous infowindow
+- resize infowindows to fit
+- make better icons
+
+{% endcomment %}
 
 <div> 
     <ul>
         {% for school in schools %} 
             <li><a class="marker-trigger" href="#" data-placeid="{{ school.placeId }}" data-name="{{ school.name }}">{{ school.name }}</a></li>
         {% endfor %}
+        {% comment %} construct list of school links that trigger info window {% endcomment %}
     </ul>
 </div>
-
-{% comment %} 
-
- TODO:
-    add ability to click links and zoom to their location + get info
-    fit map content to box 
-    click markers and get info
-{% endcomment %}
-
-{% comment %} --- 
-layout: default 
----
-
-{% assign schools = site.data.schools %}
-
-<style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-
-</style>
-
-<div id="map"></div>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&callback=initMap">
-</script>
-<script>
-    // This function is called when the user clicks the UI button requesting
-    // a geocode of a place ID.
-    function addMarkerByPlaceId(geocoder, placeId, map) {
-        // var placeId = document.getElementById('place-id').value;
-        geocoder.geocode({'placeId': placeId}, function(results, status) {
-            if (status === 'OK') {
-                if (results[0]) {
-                    latlng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()}
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        setMap: map
-                    });
-                }
-            }
-        });
-    }
-
-    function addMarkerByAddress(geocoder, address, map) {
-        geocoder.geocode({'address': address}, function(results, status) {
-            if (status === 'OK') {
-                if (results[0]) {
-                    latlng = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()}
-                    var marker = new google.maps.Marker({
-                        position: latlng,
-                        setMap: map
-                    });
-                }
-            }
-        });
-    }
-
-    function initMap() {
-        var myLatLng = {lat: 40.5008186, lng: -74.44739909999998}; // RU New Brunswick Lat/Lng
-
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 8.5,
-            center: myLatLng
-        });
-
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            setMap: map
-        });
-
-        geocoder = new google.maps.Geocoder;
-        infowindow = new google.maps.InfoWindow;
-
-        schools = [
-            {% for school in schools %} 
-                {
-                    name: '{{ school.name }}',
-                    placeId: '{{ school.placeId }}'
-                },
-            {% endfor %}
-        ]
-                
-        for (var i in schools) {
-            console.log(i)
-            addMarkerByPlaceId(geocoder, schools[i].placeId, map)
-        }
-
-    }
-</script>
-
-<p> 
-    {% for school in schools %} 
-        <p>{{ school }}</p>
-    {% endfor %}
-</p> {% endcomment %}
-
-
-{% comment %} 
- TODO:
-    add ability to click links and zoom to their location + get info
-    fit map content to box 
-    click markers and get info
-{% endcomment %}
-
