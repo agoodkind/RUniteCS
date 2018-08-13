@@ -8,12 +8,33 @@ layout: default
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 500px;
+        height: 680px;
       }
 
 </style>
 
-<div id="map"></div>
+
+
+{% comment %} 
+
+TODO: 
+- when clicking another link remove previous infowindow
+- resize infowindows to fit
+- make better icons
+
+{% endcomment %}
+
+<div> 
+    <h1>Schools we've visited:</h1>
+    <ul>
+        {% for school in schools %} 
+            <li><a class="marker-trigger" href="#" data-placeid="{{ school.placeId }}" data-name="{{ school.name }}">{{ school.name }}</a></li>
+        {% endfor %}
+        {% comment %} construct list of school links that trigger info window {% endcomment %}
+    </ul>
+</div>
+
+<div id="map" class="mb-4"></div>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&callback=initMap">
 </script>
@@ -135,21 +156,3 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
         })
     } 
 </script>
-
-{% comment %} 
-
-TODO: 
-- when clicking another link remove previous infowindow
-- resize infowindows to fit
-- make better icons
-
-{% endcomment %}
-
-<div> 
-    <ul>
-        {% for school in schools %} 
-            <li><a class="marker-trigger" href="#" data-placeid="{{ school.placeId }}" data-name="{{ school.name }}">{{ school.name }}</a></li>
-        {% endfor %}
-        {% comment %} construct list of school links that trigger info window {% endcomment %}
-    </ul>
-</div>
