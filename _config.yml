@@ -9,7 +9,7 @@ url:         "https://usacs.rutgers.edu"
 date_format: "%-d.%m.%Y"
 
 # Google services
-google_analytics: ""
+google_analytics: "UA-124239918-1"
 google_verification: ""
 
 # Facebook
