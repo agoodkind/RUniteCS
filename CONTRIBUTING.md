@@ -10,4 +10,5 @@
 5) Open http://localhost:4000/RUniteCS in your browser to view
 6) Pages can be edited by finding their name.html in the root directory
 7) Page parts (templates) can be edited by going to _includes or _layouts and editing the html
-8) ?? lets save the world!
+8) Fork the repo and commit your changes then create a pull request
+9) ?? lets save the world!
