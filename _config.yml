@@ -69,3 +69,9 @@ sass:
 
 # Gems
 gems: [jekyll-paginate]
+
+defaults:
+  - scope:
+      path: "docs/photos"
+    values:
+      photo: true
