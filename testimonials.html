@@ -1,8 +1,81 @@
 ---
 layout: default
 ---
-One thing that thought was really cool was that Sara wanted to be a teacher for awhile and then she took her first coding class and liked it. That's really cool because that is exactly how I have been thinking, I wanted to be a teacher but now I'm leaning towards computer science and engineering. Also I remember that Deep is a universal student. I remember that Lissete was a graduate from our High School. This video call was cool because it's crazy how we can all be connected just because of one thing, which of that is code, I think that that was one interesting time for me. - Aniyah, 6th grade
+<style>
 
-I think that the call was really fun. One thing I clearly remember in the call is Deep giving us advice about not giving up. He said that just because we didn't like it the first time, doesn't mean we won't like it if we try it again. Something that surprised me was that Lissette got interested in computers by playing different games on all sorts of websites. All in all, it was really interesting talking to these college students and I would be interested in doing a computer science class. - James, 6th grade
+.carousel-inner {
+    width: unset;
+}
+.carousel .carousel-control {
+	width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    top: 50%;
+	background: none;
+}
+.carousel-control i {
+    font-size: 40px;
+	line-height: 42px;
+    position: absolute;
+    display: inline-block;
+	color: rgba(0, 0, 0, 0.8);
+    text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
+}
+.carousel .carousel-indicators {
+	bottom: -40px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+	height: 10px;
+	margin: 1px 3px;
+	border-radius: 1%;
+}
+.carousel-indicators li {	
+	background: #999;
+	border-color: transparent;
+	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+.carousel-indicators li.active {	
+	background: #555;		
+	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+</style>
 
-What surprised me is that Lissette went to our high school and took hard classes. I would think that people would take easy classes just to get through the semester. Also I can't believe that Sara and a group of coders are designing a project to deliver pizza to their door by pushing a button. I learned that I should take advantage of this class because when they were in middle school they didn't have this opportunity to code. So, I want to make the best of it. - Kera, 6th grade
+<div id="carousel" class="carousel slide col-9 mx-auto" data-ride="carousel" data-interval="5000">
+    <h2>Here is what some of the K-12 students who have participated in RUniteCS have said about their experience:</h2>
+    <!-- Indicators -->
+    {% assign testimonials = site.data.testimonials %} 
+    {% assign testimonials_sliced = testimonials | slice: 1, testimonials.size
+    %}
+    <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        {% assign i = 1 %} 
+        {% for testimonial in testimonials_sliced %}
+        <li data-target="#carousel" data-slide-to="{{ i }}"></li>
+        {% assign i = i | plus: 1 %} 
+        {% endfor %}
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner mx-5">
+        {% assign first_testimonial = testimonials | first %}
+        <div class="carousel-item active">
+            <h2>{{ first_testimonial.name }}</h2>
+            <h4>{{ first_testimonial.grade }}</h4>
+            <blockquote>{{ first_testimonial.blurb }}</blockquote>
+        </div>
+        {% for testimonial in testimonials_sliced %}
+        <div class="carousel-item">
+            <h2>{{ testimonial.name }}</h2>
+            <h4>{{ testimonial.grade }}</h4>
+            <blockquote>{{ testimonial.blurb }}</blockquote>
+        </div>
+        {% endfor %}
+        <!-- Left and right controls -->
+
+    </div>
+    <a class="carousel-control left carousel-control-prev" href="#carousel" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+    </a>
+    <a class="carousel-control right carousel-control-next" href="#carousel" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+    </a>
+</div>
