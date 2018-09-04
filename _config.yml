@@ -2,9 +2,9 @@
 title:       "RUniteCS"
 header_title: "RUniteCS"
 email:       rutgersusacs@gmail.com
-author:      Alexander Goodkind
+webmaster:      Alexander Goodkind
 description: "A volunteer outreach program to spark interest in computer science in middle school students"
-baseurl:     "/RUniteCS"
+baseurl:     "/RUniteCS" # no trailing slash !
 url:         "https://usacs.rutgers.edu"
 date_format: "%-d.%m.%Y"
 
@@ -24,10 +24,9 @@ ajaxify_contact_form: true
 
 # Disqus post comments
 # (leave blank to disable Disqus)
-disqus_shortname: "disqus_xxx"
+disqus_shortname: 
 # https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
-#google_maps_js_key: AIzaSyCSh7602bHZRIAn8-OvmAPy4V76ThyRVno
-google_maps_js_key: AIzaSyA0d_vg7bba-6-T8qcPzv-s_P8eNgkZgag
+google_api_key: AIzaSyA07liNlwBQDLqiOmVz5uvKxVxSk34Q4ko
 
 # Social icons
 github_username:
@@ -62,6 +61,7 @@ share_hackernews: false
 markdown:     kramdown
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
+
 permalink:    "/:title/"
 paginate:     15
 sass:
