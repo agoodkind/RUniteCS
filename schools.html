@@ -26,6 +26,8 @@ TODO:
 - when clicking another link remove previous infowindow
 - resize infowindows to fit
 - make better icons
+- use places API to fill in detailed info
+- change colors to match
 
 {% endcomment %}
 
@@ -40,9 +42,7 @@ TODO:
 </div>
 
 <div id="map" class="mb-4"></div>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&callback=initMap">
-</script>
+
 <script>
 
     function initMap() {
@@ -72,7 +72,7 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
 
                 let name = schools[res[0].place_id] // may be a good use for Places
 
-                console.log(res[0])
+                {% comment %} console.log(res[0]) {% endcomment %}
 
                 let county = res[0].address_components[2];
                 let state = res[0].address_components[4];
@@ -88,7 +88,7 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
 
 
                 let contentString = '<div id="content">' +
-                    "<div style='float:left'><img src='http://i.stack.imgur.com/g672i.png'></div>" +
+                    "<div style='float:left'><img src='//i.stack.imgur.com/g672i.png'></div>" +
                     "<div style='float:right; padding: 10px;'><b>" + name + "</b><br/>" + countyStateStr +
                     '</div>'; // to be changed
 
@@ -162,4 +162,8 @@ src="https://maps.googleapis.com/maps/api/js?key={{ site.google_maps_js_key }}&c
             })
         })
     } 
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key={{ site.google_api_key }}&callback=initMap">
 </script>

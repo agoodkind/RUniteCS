@@ -4,3 +4,4 @@ vendor/
 .jekyll-metadata
 Gemfile.lock
 _site/
+_config.dev.yml

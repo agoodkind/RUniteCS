@@ -1,5 +1,5 @@
---- 
-layout: default 
+---
+layout: default
 ---
 <article>
   <div class="row">
@@ -9,44 +9,53 @@ layout: default
     </div>
     <script src="https://player.vimeo.com/api/player.js"></script>
   </div>
-  <div class="mt-3">
-    As the tech industry continues its rapid expansion, inclusion of women and individuals of color lags behind. At Rutgers,
+  <p class="mt-3">
+    As the tech industry continues its rapid expansion, inclusion of women and individuals of color lags behind. At
+    Rutgers,
     it's important to us to be part of the solution.
-  </div>
-  <div class="mt-3 has-links">
-    This fall, we've launched <a class="inline-link" href="https://twitter.com/intent/tweet?text=@rutgers_usacs%20This%20is%20why%20we%20want%20a%20virtual%20classroom%20visit%20at%20our%20school!&hashtags=RUniteCS">#RUniteCS</a>, a volunteer outreach program to spark interest in computer science in middle school
-    students - because once they hit high school, STEM's appeal plummets dramatically. 
-    <br/>In what we've termed "virtual classroom
-    visits," passionate and talented undergrads host a video panel discussion where kids can learn how we got interested
-    in tech and the many directions a career in CS can follow. We tell them about our favorite, often silly coding projects,
-    and point them toward free resources they can use to get started. We make every effort to have a diverse group of panelists
-    of each discussion, because we feel it's important to show these students someone in whom they can see themselves. Visits
-    can range anywhere from ten minutes to a whole class period - classroom time is valuable, so it's always up to teachers
+  </p>
+  <p class="mt-3 has-links">
+    This fall, we've launched <a class="inline-link" href="https://twitter.com/intent/tweet?text=@rutgers_usacs%20This%20is%20why%20we%20want%20a%20virtual%20classroom%20visit%20at%20our%20school!&hashtags=RUniteCS">#RUniteCS</a>,
+    a volunteer outreach program to spark interest in computer science in middle school
+    students - because once they hit high school, STEM's appeal plummets dramatically.
+    <br />In what we've termed "virtual classroom
+    visits," passionate and talented undergrads host a video panel discussion where kids can learn how we got
+    interested
+    in tech and the many directions a career in CS can follow. We tell them about our favorite, often silly coding
+    projects,
+    and point them toward free resources they can use to get started. We make every effort to have a diverse group of
+    panelists
+    of each discussion, because we feel it's important to show these students someone in whom they can see
+    themselves. Visits
+    can range anywhere from ten minutes to a whole class period - classroom time is valuable, so it's always up to
+    teachers
     to decide how much they'd like to use with us.
-  </div>
-  <div class="mt-3 has-links">
-    If you'd like to learn more about our outreach efforts, set up a virtual classroom visit for your class, extend this program
+  </p>
+  <p class="mt-3 has-links">
+    If you'd like to learn more about our outreach efforts, set up a virtual classroom visit for your class, extend
+    this program
     to your college please reach out to us at
     <a class="inline-link" href="mailto:rutgersusacs@gmail.com">rutgersusacs@gmail.com</a> or tweet us
-    <a class="inline-link" href="https://twitter.com/intent/tweet?text=@rutgers_usacs%20This%20is%20why%20we%20want%20a%20virtual%20classroom%20visit%20at%20our%20school!&hashtags=RUniteCS">@rutgers_usacs</a> with the hashtag
+    <a class="inline-link" href="https://twitter.com/intent/tweet?text=@rutgers_usacs%20This%20is%20why%20we%20want%20a%20virtual%20classroom%20visit%20at%20our%20school!&hashtags=RUniteCS">@rutgers_usacs</a>
+    with the hashtag
     <a class="inline-link" href="https://twitter.com/intent/tweet?text=@rutgers_usacs%20This%20is%20why%20we%20want%20a%20virtual%20classroom%20visit%20at%20our%20school!&hashtags=RUniteCS">#RUniteCS</a>.
-  </div>
+  </p>
 
   <h2>Check out of the photos:</h2>
   <div id="carousel" class="carousel slide row" data-ride="carousel" data-interval="5000">
     <!-- Indicators -->
-    {% assign photo_files = site.static_files | where: "photo", true %} 
+    {% assign photo_files = site.static_files | where: "photo", true %}
     {% assign photos = photo_files | slice: 1, photo_files.size %}
     <ol class="carousel-indicators">
       <li data-target="#carousel" data-slide-to="0" class="active"></li>
-      {% assign i = 1 %} 
+      {% assign i = 1 %}
       {% for photo in photos %}
       <li data-target="#carousel" data-slide-to="{{ i }}"></li>
-      {% assign i = i | plus: 1 %} 
+      {% assign i = i | plus: 1 %}
       {% endfor %}
     </ol>
     <!-- Wrapper for slides -->
-    <div class="carousel-inner">
+    <div class="carousel-inner mb-3">
       {% assign first_photo = photo_files | first %}
       <div class="carousel-item active">
         <img class="d-block w-100" src="{{ first_photo.path | prepend: site.baseurl }}">
