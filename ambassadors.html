@@ -2,75 +2,157 @@
 layout: default 
 ---
 
+<style>
+.card-img {
+    width: 100%;
+}
+.card-info {
+    position: absolute;
+    bottom: 0;
+    opacity: 0;
+}
 
-<div class="row outer">
-    
-    {% assign amabassadors = site.data.ambassadors %}
+.card::before {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    background-color: white;
+}
 
-    <script>
-        var ambassador = [ 
-            {% for person in amabassadors %} 
-            { 
-                name: '{{ person.name }}', 
-                // {% if person.bio %} 
-                // bio: '{{ person.bio }}', 
-                // {% endif %} 
-                {% if person.title %} 
-                title: '{{ person.title }}', 
-                {% endif %} 
-                {% if person.email %} 
-                email: '{{ person.email }}', 
-                {% endif %} 
-                {% if person.year %}
-                year: '{{ person.year }}',
-                {% endif %} 
-                image: "{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" 
-            }, 
-            {% endfor %} 
-        ]
+.inner:hover .card-info {
+    opacity: 1;
+}
+
+.inner:hover .card::before {
+    opacity: .7;
+}
+
+.inner,
+.card::before,
+.inner:hover .card::before,
+.card-info {
+    -webkit-transition: all .25s ease-in-out !important;
+    -moz-transition: all .25s ease-in-out !important;
+    transition: all .25s ease-in-out !important;
+}
+
+.mobile .card-info{
+    margin-top: 4%;
+    position: unset;
+    opacity: 1
+}
+.mobile .card::before {
+    opacity: 0;
+}
+</style>
+
+<div class="container">
+    <div class="row outer">
         
-        function shuffle(a) {
-            for (let i = a.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [a[i], a[j]] = [a[j], a[i]];
-            }
-            return a;
-        }
+        {% assign amabassadors = site.data.ambassadors %}
 
-        shuffle(ambassador);
-
-        for (var person in ambassador) {
-            p = ambassador[person]
-            let inner = $('<div class="inner col-lg-4 col-md-6 col-xs-6 mb-5">');
-            let card = $('<div class="card">');
+        <script>
+            var ambassador = [ 
+                {% for person in amabassadors %} 
+                { 
+                    name: '{{ person.name }}', 
+                    // {% if person.bio %} 
+                    // bio: '{{ person.bio }}', 
+                    // {% endif %} 
+                    {% if person.title %} 
+                    title: '{{ person.title }}', 
+                    {% endif %} 
+                    {% if person.email %} 
+                    email: '{{ person.email }}', 
+                    {% endif %} 
+                    {% if person.year %}
+                    year: '{{ person.year }}',
+                    {% endif %} 
+                    image: "{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" 
+                }, 
+                {% endfor %} 
+            ]
             
-            let image = $('<img style="width:100%" class="img-fluid" src="' + p.image + '" alt="' + p.name + '"/>');
-            let container = $('<div class="container">');
-            let name = $('<h2>' + p.name + '</h2>');
-            container.append(name);
-            if (p.bio) { let bio = $('<p>' + p.bio + '</p>'); container.append(bio); }
-            if (p.year) { let year = $('<p>Year: \'' + p.year + '</p>'); container.append(year); }
+            function shuffle(a) {
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
+            }
 
-            $('.outer').append(inner.append(card.append(image).append(container)));
-        }
-    </script>
-<!-- {% for person in amabassadors %}
-    <div class=" col-lg-4 col-md-6 col-xs-6 mb-5">
-        <div class="card">
-            <img class="img-fluid" src="{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" alt="{{ person.name }}" style="width:100%">
-            <div class="container">
-                <h2>{{ person.name }}</h2>
-                <p class="title">{{ person.title }}</p>
-                <p class="blurb">{{ person.blurb }}</p>
-                {% if person.email %}<p>{{ person.email }}</p>
-                <p>
-                    <button class="button">Contact</button>
-                </p>
-                {% endif %}
+            shuffle(ambassador);
+
+            for (var person in ambassador) {
+                p = ambassador[person]
+                let inner = $('<div class="inner col-xs-7 col-md-6 mb-5">');
+                let card = $('<div class="card">');
+                
+                let image = $('<img class="card-img" src="' + p.image + '" alt="' + p.name + '"/>');
+                let container = $('<div class="container card-info">');
+                let name = $('<h2>' + p.name + '</h2>');
+                container.append(name);
+                if (p.bio) { let bio = $('<p>' + p.bio + '</p>'); container.append(bio); }
+                if (p.year) { let year = $('<p>Year: \'' + p.year + '</p>'); container.append(year); }
+
+                $('.outer').append(inner.append(card.append(image).append(container)));
+            }
+        </script>
+    <!-- {% for person in amabassadors %}
+        <div class=" col-lg-4 col-md-6 col-xs-6 mb-5">
+            <div class="card">
+                <img class="img-fluid" src="{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" alt="{{ person.name }}" style="width:100%">
+                <div class="container">
+                    <h2>{{ person.name }}</h2>
+                    <p class="title">{{ person.title }}</p>
+                    <p class="blurb">{{ person.blurb }}</p>
+                    {% if person.email %}<p>{{ person.email }}</p>
+                    <p>
+                        <button class="button">Contact</button>
+                    </p>
+                    {% endif %}
+                </div>
             </div>
         </div>
+    {% endfor %} -->
     </div>
-{% endfor %} -->
-
 
 </div>
+
+
+<script type="text/javascript">
+    if ($.browser.mobile) {
+        $('.outer').addClass('mobile')
+    }
+
+    // init Masonry
+    var $grid = $('.outer').masonry({
+        itemSelector: '.inner'
+    });
+    // layout Masonry after each image loads
+    $grid.imagesLoaded().progress( function() {
+        $grid.masonry('layout');
+        {% comment %} $('.inner').addClass('not-loaded');
+        $('.inner.not-loaded').lazyload({
+            effect: 'fadeIn',
+            load: function() {
+                // Disable trigger on this image
+                $(this).removeClass("not-loaded");
+                $grid.masonry('reload');
+            }
+        });
+        $('.inner.not-loaded').trigger('scroll'); {% endcomment %}
+    });
+    
+    $(window).resize(function() {
+        $grid.masonry('layout');
+    })
+    
+    $(window).scroll(function() {
+        $grid.masonry('layout');
+    })
+    </script>
