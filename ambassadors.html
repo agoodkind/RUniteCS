@@ -60,9 +60,9 @@ layout: default
                 {% for person in amabassadors %} 
                 { 
                     name: '{{ person.name }}', 
-                    // {% if person.bio %} 
-                    // bio: '{{ person.bio }}', 
-                    // {% endif %} 
+                    {% if person.bio %} 
+                    bio: "{{ person.bio }}", 
+                    {% endif %}
                     {% if person.title %} 
                     title: '{{ person.title }}', 
                     {% endif %} 
