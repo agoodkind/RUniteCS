@@ -12,14 +12,17 @@ layout: default
             {% for person in amabassadors %} 
             { 
                 name: '{{ person.name }}', 
-                {% if person.blurb %} 
-                blurb: '{{ person.blurb }}', 
+                {% if person.bio %} 
+                bio: '{{ person.bio }}', 
                 {% endif %} 
                 {% if person.title %} 
                 title: '{{ person.title }}', 
                 {% endif %} 
                 {% if person.email %} 
                 email: '{{ person.email }}', 
+                {% endif %} 
+                {% if person.year %}
+                year: '{{ person.year }}',
                 {% endif %} 
                 image: "{{ '/docs/ambassadors/' | prepend: site.baseurl }}{{ person.image }}" 
             }, 
@@ -41,11 +44,18 @@ layout: default
             let inner = $('<div class="inner col-lg-4 col-md-6 col-xs-6 mb-5">');
             let card = $('<div class="card">');
             
-            let image = $('<img style="width:100%" class="img-fluid" src="' + p.image + '" alt="' + p.name + '"/>')
-            let container = $('<div class="container">')
+            let image = $('<img style="width:100%" class="img-fluid" src="' + p.image + '" alt="' + p.name + '"/>');
+            let container = $('<div class="container">');
             let name = $('<h2>' + p.name + '</h2>');
+            let bio = $('<p>' + p.bio + '</p>');
+            let year = $('<p>\'' + p.year + '</p>');
 
-            $('.outer').append(inner.append(card.append(image).append(container.append(name))));
+            container.append(name);
+            container.append(bio);
+            container.append(year);
+
+
+            $('.outer').append(inner.append(card.append(image).append(container)));
         }
     </script>
 <!-- {% for person in amabassadors %}

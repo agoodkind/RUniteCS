@@ -1,5 +1,7 @@
 - name: SaraAnn Stanway
   image: SaraAnn_Stanway.jpeg
+  bio: "I started coding in high school at the encouragement of my older brother and was surprised to find that I loved it. As a CS major now, I’ve worked two internships and contributed to open-source work with NYPD to fight human trafficking! I’m the president of Rutgers’ CS club, and the founder of RUniteCS - tech is such an empowering field, and I love sharing it!"
+  year: 19
 
 - name: Ben Yang
   image: Ben_Yang.jpg
@@ -12,15 +14,21 @@
 
 - name: Srihari Shankar
   image: Srihari_Shankar.jpg
+  bio: "I am a rising senior, I got into coding when I was in 6th grade and started with Visual basic. I got serious in high school and build minecraft mods. I love building cool projects and going to hackathons"
+  year: 19
 
 - name: Diane Tran
   image: Diane_Tran.jpeg
+  bio: "Hello, I'm Diane! I came to college with a spark of interest and no prior knowledge of Computer Science. I played endless computer games growing up, but had no idea what I wanted to do with my future; so I took a couple of "Is Comp Sci Right For Me?" quizzes and discovered an INEXHAUSTIBLE FIERY PASSION for Computer Science! I've found purpose, direction, a dream, and I want to share what Computer Science is to me in hopes that someone else will find their passion too. This summer I worked as an Application Developer Co -Op at UPS, implementing and enhancing new features for the UPS Chat Bot on multiple platforms. In my free time I like to watch movies, read books, play board games, video games, and attempt to cook and bake!"
+  year: 21
 
 - name: Shreya Sethi
   image: Shreya_Sethi.jpeg
 
 - name: Alexander Goodkind
   image: Alexander_Goodkind.jpg
+  bio: "Hey, I'm Alex. I've had a deep interest in how things work, and why they work that way. Because Computer Science is a relatively new field, the vast depth of knowledge that is available to learn is infinitely growing. I chose CS because I can always continue to learn, and have oppourtunities to create something new!"
+  year: 20
 
 - name: Sakib Jalal
   image: Sakib_Jalal.jpeg
@@ -30,9 +38,20 @@
 
 - name: Maya Ravichandran
   image: Maya_Ravichandran.jpg
+  bio: "Hi, my name is Maya! I got interested in computer science after I took a computer science elective in high school and loved it. I hope that I can share computer science with others and help others discover their passions, whatever they may be. This past summer, I interned at Commvault, a cloud services and data backup company. In my free time, I enjoy hiking, birding, and reading. "
+  year: 21
 
 - name: Ali Mohamad
   image: Ali_Mohamad.jpeg
+  bio: "Hi, I'm Ali! I got into Computer Science by going to hackathons all throughout high school (I've been to about 6 hackathons a year since my sophomore year of HS.) This past summer, I worked at Pearson as a DevOps intern, and in my spare time I enjoy photography, longboarding, upcycling, and writing."
+  year: 21
 
 - name: Fan Liu
   image: Fan_Liu.png
+  bio: "I interned at Igolgi Inc. as a Cloud Deployment Engineer where I developed an auto-scale backend system using Microsoft Azure to deploy their media transcoding application. That was probably the coolest project I've ever worked on. In the future, I wish to expand my portfolio by interning at a variety of companies that provide elegant solutions to different fields of the tech industry in order to find my true calling. Eventually, I hope to have my very own startup. My interest in tech originated from my parents' unwillingness of letting me touch our first home computer and my persistence in finding alternative forms of entertainment other than handheld consoles at the age eight. "
+  year: 20
+
+- name: Nithi Kumar
+  image: Nithi_Kumar.jpg
+  bio: "Hello, my name is Nithi! This summer I was fortunate enough to work in a research lab, InfoSeeking lab, where I learned data science, neural networks, and information retrieval mostly using Python libraries. I am excited to share any advice or knowledge I have gained about Computer Science, the technology field, college, or life in general. In my free time I love to dance, read, watch Netflix, and contemplate life! "
+  year: 21
