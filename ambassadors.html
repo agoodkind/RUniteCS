@@ -12,9 +12,9 @@ layout: default
             {% for person in amabassadors %} 
             { 
                 name: '{{ person.name }}', 
-                {% if person.bio %} 
-                bio: '{{ person.bio }}', 
-                {% endif %} 
+                // {% if person.bio %} 
+                // bio: '{{ person.bio }}', 
+                // {% endif %} 
                 {% if person.title %} 
                 title: '{{ person.title }}', 
                 {% endif %} 
@@ -47,13 +47,9 @@ layout: default
             let image = $('<img style="width:100%" class="img-fluid" src="' + p.image + '" alt="' + p.name + '"/>');
             let container = $('<div class="container">');
             let name = $('<h2>' + p.name + '</h2>');
-            let bio = $('<p>' + p.bio + '</p>');
-            let year = $('<p>\'' + p.year + '</p>');
-
             container.append(name);
-            container.append(bio);
-            container.append(year);
-
+            if (p.bio) { let bio = $('<p>' + p.bio + '</p>'); container.append(bio); }
+            if (p.year) { let year = $('<p>Year: \'' + p.year + '</p>'); container.append(year); }
 
             $('.outer').append(inner.append(card.append(image).append(container)));
         }
