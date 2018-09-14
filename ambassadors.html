@@ -28,7 +28,7 @@ layout: default
 }
 
 .inner:hover .card::before {
-    opacity: .7;
+    opacity: .85;
 }
 
 .inner,
@@ -47,6 +47,13 @@ layout: default
 }
 .mobile .card::before {
     opacity: 0;
+}
+
+.card-info {
+    overflow-y: scroll;
+}
+.card-info > h2{
+    padding-top: 10px;
 }
 </style>
 
@@ -93,7 +100,7 @@ layout: default
                 let card = $('<div class="card">');
                 
                 let image = $('<img class="card-img" src="' + p.image + '" alt="' + p.name + '"/>');
-                let container = $('<div class="container card-info">');
+                let container = $('<div class="container card-info"></div>');
                 let name = $('<h2>' + p.name + '</h2>');
                 container.append(name);
                 if (p.bio) { let bio = $('<p>' + p.bio + '</p>'); container.append(bio); }
@@ -150,9 +157,26 @@ layout: default
     
     $(window).resize(function() {
         $grid.masonry('layout');
+        setHeights();
     })
     
     $(window).scroll(function() {
         $grid.masonry('layout');
+        setHeights();
     })
+
+    $grid.imagesLoaded(function() {
+        setHeights();
+        
+    })
+
+    var setHeights = function() {
+        $('.card').each(function() {
+            $cardHeight = $(this).height();
+            $cardWidth = $(this).width();
+            console.log($cardWidth)
+            $(this).children(".card-info").height($cardHeight).width($cardWidth-30);
+            // weird offsets 10 and 30
+        })
+    }
     </script>
