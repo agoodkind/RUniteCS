@@ -143,16 +143,6 @@ layout: default
     // layout Masonry after each image loads
     $grid.imagesLoaded().progress( function() {
         $grid.masonry('layout');
-        {% comment %} $('.inner').addClass('not-loaded');
-        $('.inner.not-loaded').lazyload({
-            effect: 'fadeIn',
-            load: function() {
-                // Disable trigger on this image
-                $(this).removeClass("not-loaded");
-                $grid.masonry('reload');
-            }
-        });
-        $('.inner.not-loaded').trigger('scroll'); {% endcomment %}
     });
     
     $(window).resize(function() {
@@ -175,7 +165,7 @@ layout: default
             $cardHeight = $(this).height();
             $cardWidth = $(this).width();
             console.log($cardWidth)
-            $(this).children(".card-info").height($cardHeight).width($cardWidth-30);
+            $(this).children(".card-info").height($cardHeight);
             // weird offsets 10 and 30
         })
     }
