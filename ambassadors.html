@@ -43,7 +43,8 @@ layout: default
 .mobile .card-info{
     margin-top: 4%;
     position: unset;
-    opacity: 1
+    opacity: 1;
+    height: unset !important;
 }
 .mobile .card::before {
     opacity: 0;
@@ -132,41 +133,45 @@ layout: default
 
 
 <script type="text/javascript">
-    if ($.browser.mobile) {
-        $('.outer').addClass('mobile')
-    }
+    function checkMobile() {
+            if ($.browser.mobile) {
+                $('.outer').addClass('mobile')
+            }
+        }
 
-    // init Masonry
-    var $grid = $('.outer').masonry({
-        itemSelector: '.inner'
-    });
-    // layout Masonry after each image loads
-    $grid.imagesLoaded().progress( function() {
-        $grid.masonry('layout');
-    });
-    
-    $(window).resize(function() {
-        $grid.masonry('layout');
-        setHeights();
-    })
-    
-    $(window).scroll(function() {
-        $grid.masonry('layout');
-        setHeights();
-    })
 
-    $grid.imagesLoaded(function() {
-        setHeights();
-        
-    })
+        // init Masonry
+        var $grid = $('.outer').masonry({
+            itemSelector: '.inner'
+        });
 
-    var setHeights = function() {
-        $('.card').each(function() {
-            $cardHeight = $(this).height();
-            $cardWidth = $(this).width();
-            console.log($cardWidth)
-            $(this).children(".card-info").height($cardHeight);
-            // weird offsets 10 and 30
+        $grid.imagesLoaded().progress(function () {
+            $grid.masonry('layout');
+            setHeights();
+            checkMobile();
+        });
+
+        $(window).resize(function () {
+            $grid.masonry('layout');
+            setHeights();
+            checkMobile();
         })
-    }
+
+        // $(window).scroll(function () {
+        //     $grid.masonry('layout');
+        //     setHeights();
+        // })
+
+        // $grid.imagesLoaded(function () {
+        //     setHeights();
+        //     checkMobile();
+        // })
+
+        var setHeights = function () {
+            $('.card').each(function () {
+                $cardHeight = $(this).height();
+                $(this).children(".card-info").height($cardHeight);
+                // weird offsets 10 and 30
+            })
+        }
     </script>
