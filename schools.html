@@ -31,14 +31,12 @@ TODO:
 
 {% endcomment %}
 
-<div> 
-    <h1>Schools we've visited:</h1>
-    <ul>
-        {% for school in schools %} 
-            <li><a class="marker-trigger" href="#" data-placeid="{{ school.placeId }}" data-name="{{ school.name }}">{{ school.name }}</a></li>
-        {% endfor %}
-        {% comment %} construct list of school links that trigger info window {% endcomment %}
-    </ul>
+<div class="list-group mb-4 d-flex flex-row flex-wrap"> 
+    <h1>Schools we're working with:</h1>
+    {% for school in schools %} 
+        <a class="place-{{ school.placeId }} marker-trigger list-group-item list-group-item-action w-50" href="#" data-placeid="{{ school.placeId }}" data-name="{{ school.name }}">{{ school.name }}</a>
+    {% endfor %}
+    {% comment %} construct list of school links that trigger info window {% endcomment %}
 </div>
 
 <div id="map" class="mb-4"></div>
@@ -107,7 +105,9 @@ TODO:
                     infowindow.open(map, marker); // add default click listener to each marker
                     map.panTo(this.getPosition());
                     map.setZoom(15);
-                    
+                    let currentPlace = res[0].place_id;
+                    $('.active').toggleClass('active');
+                    $('.place-' + currentPlace).toggleClass('active');
                 });
 
                 markers[res[0].place_id] = marker; // construct dictionary of place_id => markers

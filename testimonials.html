@@ -1,81 +1,22 @@
 ---
 layout: default
 ---
-<style>
 
-.carousel-inner {
-    width: unset;
-}
-.carousel .carousel-control {
-	width: 40px;
-    height: 40px;
-    margin-top: -20px;
-    top: 50%;
-	background: none;
-}
-.carousel-control i {
-    font-size: 40px;
-	line-height: 42px;
-    position: absolute;
-    display: inline-block;
-	color: rgba(0, 0, 0, 0.8);
-    text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
-}
-.carousel .carousel-indicators {
-	bottom: -40px;
-}
-.carousel-indicators li, .carousel-indicators li.active {
-	height: 10px;
-	margin: 1px 3px;
-	border-radius: 1%;
-}
-.carousel-indicators li {	
-	background: #999;
-	border-color: transparent;
-	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
-}
-.carousel-indicators li.active {	
-	background: #555;		
-	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
-}
-</style>
+<h2>Here is what some of the K-12 students who have participated in RUniteCS have said about their experience:</h2>
+<!-- Indicators -->
+{% assign testimonials = site.data.testimonials %} 
 
-<div id="carousel" class="carousel slide col-9 mx-auto" data-ride="carousel" data-interval="5000">
-    <h2>Here is what some of the K-12 students who have participated in RUniteCS have said about their experience:</h2>
-    <!-- Indicators -->
-    {% assign testimonials = site.data.testimonials %} 
-    {% assign testimonials_sliced = testimonials | slice: 1, testimonials.size
-    %}
-    <ol class="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-        {% assign i = 1 %} 
-        {% for testimonial in testimonials_sliced %}
-        <li data-target="#carousel" data-slide-to="{{ i }}"></li>
-        {% assign i = i | plus: 1 %} 
-        {% endfor %}
-    </ol>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner mx-5">
-        {% assign first_testimonial = testimonials | first %}
-        <div class="carousel-item active">
-            <h2>{{ first_testimonial.name }}</h2>
-            <h4>{{ first_testimonial.grade }}</h4>
-            <blockquote>{{ first_testimonial.blurb }}</blockquote>
-        </div>
-        {% for testimonial in testimonials_sliced %}
-        <div class="carousel-item">
+<div class="row outer mt-4">
+
+    {% for testimonial in testimonials %}
+    <div class="inner mb-5 col-xs-7 col-md-6">
+        <div class="card p-3">
             <h2>{{ testimonial.name }}</h2>
             <h4>{{ testimonial.grade }}</h4>
             <blockquote>{{ testimonial.blurb }}</blockquote>
         </div>
-        {% endfor %}
-        <!-- Left and right controls -->
-
     </div>
-    <a class="carousel-control left carousel-control-prev" href="#carousel" data-slide="prev">
-        <i class="fa fa-angle-left"></i>
-    </a>
-    <a class="carousel-control right carousel-control-next" href="#carousel" data-slide="next">
-        <i class="fa fa-angle-right"></i>
-    </a>
+    {% endfor %}
+
 </div>
+
