@@ -4,8 +4,8 @@ header_title: "RUniteCS"
 email:       rutgersusacs@gmail.com
 webmaster:      Alexander Goodkind
 description: "A volunteer outreach program to spark interest in computer science in middle school students"
-baseurl:     "/RUniteCS" # no trailing slash !
-url:         "https://usacs.rutgers.edu"
+baseurl:     "" # no trailing slash !
+url:         "https://runitecs.org"
 date_format: "%-d.%m.%Y"
 
 # Google services
